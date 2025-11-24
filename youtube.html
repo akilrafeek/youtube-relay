@@ -31,16 +31,18 @@
     </iframe>
 
     <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const videoId = urlParams.get('videoId');
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get('videoId');
+        
+        // Get autoplay param, default to '0' (off) if missing
+        const autoplay = urlParams.get('autoplay') === '1' ? '1' : '0';
 
-      if (videoId) {
-        document.getElementById(
-          'player'
-        ).src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&playsinline=1`;
-      } else {
-        console.error('No videoId found in URL parameters');
-      }
+        if (videoId) {
+            const src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=${autoplay}`;
+            document.getElementById('player').src = src;
+        } else {
+            console.error("No videoId found in URL parameters");
+        }
     </script>
   </body>
 </html>
